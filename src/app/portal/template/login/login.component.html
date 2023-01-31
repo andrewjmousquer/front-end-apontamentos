@@ -1,0 +1,98 @@
+<div class="login-body">
+  <div class="col pt-5 pb-0">
+    <span class="app-title">C A R B O N</span>
+  </div>
+  <form [formGroup]="loginQRForm" (ngSubmit)="onSubmitQR()">
+    <div class="card login-panel pt-3" *ngIf="qrCode">
+      <span *ngIf="userName && office" style="font-size: large;">{{office}} - {{userName}}</span>
+      <div class="field input-position">
+        <div class="input-wrapper">
+          <label for="password">QR code</label>
+          <input type="password" autocomplete="off" id="loginFormPassword" #passQR formControlName="qrCode"
+            class="ui-inputtext ui-widget" autofocus (blur)="loadUserName(true)">
+        </div>
+        <div class="input-wrapper">
+          <label for="numberOs">Nº da OS <span class="text-danger">*</span></label>
+          <input type="text" autocomplete="off" class="ui-inputtext ui-widget" id="numberOs" formControlName="numberOs" required>
+          <small
+          style="font-weight: bold; color: red; font-size: small; float: center;"
+          *ngIf="(hasNumberOs)">
+          É necessario informar uma OS!
+        </small>
+        </div>
+      </div>
+      <button type="submit" label="Login" icon="fa fa-external-link" pButton [disabled]="loginQRForm.get('numberOs').value == ''"></button>
+      <div class="input-wrapper">
+        <label style="font-size: 0.7rem;">{{envinromentName}} - VERSÃO {{version}} - DATA {{versionDate}}</label>
+      </div>
+      <p>
+        <p-messages [value]="msgs"></p-messages>
+      </p>
+    </div>
+  </form>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="card login-panel pt-3 pb-5" *ngIf="userPass" style="padding-bottom: 14px!important">
+      <h5>Login</h5>
+      <p>Bem vindo, insira seu usuário e senha.</p>
+      <div class="field input-position">
+        <div class="input-wrapper">
+          <label for="username">Usuário</label>
+          <input type="text" autocomplete="off" class="ui-inputtext ui-widget" id="loginFormUser"
+            formControlName="username">
+        </div>
+        <div class="input-wrapper">
+          <label for="numberOs">Nº da OS: </label>
+          <input type="text" autocomplete="off" class="ui-inputtext ui-widget" id="numberOs" formControlName="numberOs">
+        </div>
+        <div class="input-wrapper">
+          <label for="password">Senha</label>
+          <input type="password" autocomplete="off" id="loginFormPassword" formControlName="password"
+            class="ui-inputtext ui-widget">
+        </div>
+      </div>
+      <button type="submit" label="Login" icon="fa fa-external-link" pButton style="margin: 10px!important;"></button>
+      <div class="input-wrapper">
+        <label class="mt-4" style="font-size: 0.8rem; margin: 7px!important;"><small>{{envinromentName}} - VERSÃO {{version}} - DATA {{versionDate}}</small></label>
+      </div>
+      <p>
+        <p-messages [value]="msgs"></p-messages>
+      </p>
+    </div>
+  </form>
+</div>
+
+<iframe [src]="jasperLogoutURL" class="jasper-logout-iframe"></iframe>
+
+<p-dialog [(visible)]="showExpiredPasswordDialog" modal="modal" showEffect="fade" [closeOnEscape]="false"
+  [closable]="false" [draggable]="false" appendTo="body">
+  <div class="p-fluid grid form-group expired-password-dialog">
+    <form #expiredPasswordForm="ngForm" class="expired-password-form">
+      <h3 style="margin-block-end: 0;">Senha Expirada</h3>
+      <p>Por favor cadastre uma nova senha!</p>
+
+      <div class="p-fluid grid form-group">
+        <div class="col-12 field">
+          <label for="float-input">Senha</label>
+          <input type="password" pPassword [(ngModel)]="expirePasswordForm.password" name="registerPassword"
+            autocomplete="off" />
+        </div>
+        <div class="col-12 field">
+          <label for="float-input">Repetir senha</label>
+          <input type="password" pPassword [(ngModel)]="expirePasswordForm.confirmPassword"
+            name="registerConfirmPassword" autocomplete="off" value="" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <p>
+    <p-messages [value]="expiredPasswordMessages"></p-messages>
+  </p>
+
+  <p-footer>
+    <div class="col-12 flex flex-row justify-content-end py-0">
+      <button pButton icon="fa fa-times" (click)="cancelChangePassword()" label="Cancelar"
+        class="p-button-outlined p-button-light mr-3 md:w-10rem"></button>
+      <button pButton icon="fa fa-check" (click)="changePassword()" label="Salvar" class="md:w-10rem"></button>
+    </div>
+  </p-footer>
+</p-dialog>

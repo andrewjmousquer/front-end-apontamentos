@@ -1,0 +1,212 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card card-w-title">
+        <div class="col-12 md:col-12">
+          <form #searchForm="ngForm" (ngSubmit)="search()">
+            <div class="p-fluid grid form-group">
+              <div class="col-12 md:col-6 field p-0">
+                <h5>Apontamentos</h5>
+              </div>
+              <div class="col-12 md:col-12 sm:col-12 field text-right">
+                <button pButton *ngIf="hasExportPermission" type="button" label="Exportar"
+                  class="p-button-success md:w-11rem sm:w-11rem w-11rem" icon="fa fa-arrow-down"
+                  (click)="export()"></button>
+              </div>
+
+              <div class="col-12 md:col-3 field">
+                <label for="name">Nome <span class="text-danger">*</span></label>
+
+                  <p-dropdown [options]="users" name="userName" optionLabel="person.name" [(ngModel)]="taskSearch.name"
+                  dataKey="id" optionValue="person.name" [showClear]="true" autoDisplayFirst="true"
+                  placeholder="Selecione">
+                  </p-dropdown>
+              </div>
+
+              <div class="col-12 md:col-3 field">
+                <label for="numberOs">Nº da OS <span class="text-danger">*</span></label>
+                <input id="input" type="text" pInputText [(ngModel)]="taskSearch.numberOS" pInputText name="numberOs"
+                  required="true" autocomplete="off">
+              </div>
+
+              <div class="col-12 md:col-3 field">
+                <label for="brand">Marca <span class="text-danger">*</span></label>
+                <input id="input" type="text" pInputText [(ngModel)]="taskSearch.brand" name="brand" [required]="true"
+                  autocomplete="off" />
+              </div>
+              <div class="col-12 md:col-3 field">
+                <label for="model_task">Modelo <span class="text-danger">*</span></label>
+                <input id="input" type="text" pInputText [(ngModel)]="taskSearch.model" name="model_task"
+                  [required]="true" autocomplete="off" />
+
+              </div>
+
+              <div class="col-12 md:col-2 field">
+                <label for="icon">Data de Início</label>
+                <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="taskSearch.dateStart" showTime="true"
+                  [hourFormat]="24" name="dateStart">
+
+                </p-calendar>
+              </div>
+
+              <div class="col-12 md:col-2 field">
+                <label for="icon">Data Fim</label>
+                <p-calendar [showIcon]="true" name="dateFinish" inputId="icon" [(ngModel)]="taskSearch.dateFinish"
+                  optionLabel="dateFinish">
+                </p-calendar>
+              </div>
+
+              <div class="col-12 md:col-3 md:col-offset-1 field">
+                <label for="stage_task">Etapa</label>
+
+                <p-dropdown [options]="stageList" name="stage_task" optionLabel="name" [(ngModel)]="taskSearch.stage"
+                  dataKey="id" optionValue="id" [showClear]="true" autoDisplayFirst="true"
+                  placeholder="Apontamentos sem uma etapa">
+                </p-dropdown>
+
+              </div>
+
+              <div class="col-12 md:col-2 field searchButtons">
+                <button type="button" label="Limpar" (click)="resetSearch()" icon="fa fa-times" pButton
+                  class="p-button-outlined p-button-secondary md:w-10rem">
+                </button>
+              </div>
+
+              <div class="col-12 md:col-2 field searchButtons">
+                <button type="submit" label="Buscar" icon="fa fa-search" pButton class="md:w-11rem ml-2">
+                </button>
+              </div>
+
+
+            </div>
+          </form>
+          <div class="md:col-12">
+            <p-table #dt [columns]="cols" [value]="taskList" dataKey="idRegisterTime"
+              [style]="{ 'margin-bottom': '20px' }" [responsive]="true" selectionMode="single"
+              [(selection)]="taskRegister" (onRowSelect)="edit($event)" (onRowUnselect)="resetRegisterForm()"
+              [rows]="10" [paginator]="true">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+
+                  <td>{{rowData.userName}}</td>
+                  <td>{{rowData.numberOS}}</td>
+                  <td>{{rowData.brand}}</td>
+                  <td>{{rowData.model}}</td>
+                  <td>{{rowData.stageName}}</td>
+                  <td>{{rowData.dateStart | date:'dd/MM/yyyy'}}</td>
+                  <td>{{rowData.dateFinish | date:'dd/MM/yyyy'}}</td>
+                  <td>{{rowData.totalTime}}</td>
+                  <td>{{rowData.value != null ? (rowData.value | currency: "R$") : '--' }}</td>
+                  <td>{{rowData.valueRecived != null ? (rowData.valueRecived | currency: "R$") : '--' }}</td>
+                  <td>{{rowData.paymentByTeam ? 'Sim' : 'Não'}}</td>
+                  <td><button pButton pRipple type="button" icon="pi pi-check"
+                      class="p-button-rounded align-self-center" (click)="newModal(rowData)"></button></td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="10" class="text-center">
+                    Sem registros encontrados
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form>
+        <p-dialog header="Editar Hora" [(visible)]="adicionando" [modal]="true"
+          [style]="{width: '60vw', height:'autocomplete'}" [draggable]="false" [resizable]="false">
+          <div class="p-fluid grid form-group col-12 md:col-12">
+
+            <div class="col-12 md:col-4 field">
+              <label for="OrdemOS">Nº da OS</label>
+              <input id="input" type="text" pInputText [(ngModel)]="taskSave.numberOS" pInputText name="numberOS"
+                disabled="true">
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="Placa">Placa</label>
+              <input type="text" id="inputtext" pInputText disabled="true">
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="Chassi">Chassi</label>
+              <input type="text" id="inputtext" pInputText name="numberOS" [required]="true" autocomplete="off"
+                disabled="true">
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="Marca">Marca</label>
+              <input type="text" id="inputtext" pInputText name="brand" [required]="true" autocomplete="off"
+                [(ngModel)]="taskSave.brand" disabled="true">
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="Modelo">Modelo</label>
+              <input type="text" id="inputtext" pInputText name="model" [required]="true" autocomplete="off"
+                [(ngModel)]="taskSave.model" disabled="true">
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="Modelo">Etapa</label>
+              <input type="text" id="inputtext" pInputText name="stageName" [required]="true" autocomplete="off"
+                [(ngModel)]="taskSave.stageName" disabled="true">
+            </div>
+
+            <div class="col-12 md:col-12 field">
+              <label for="Name">Nome</label>
+              <input id="input" type="text" pInputText [(ngModel)]="taskSave.userName" name="userName" [required]="true"
+                autocomplete="off" disabled="true" />
+            </div>
+
+            <div class="col-12 md:col-4 field dateStart">
+              <label for="dateStart">Início</label>
+              <p-calendar [(ngModel)]="taskSave.dateStart" showTime="true" [hourFormat]="24" dateFormat="dd/mm/yy"
+                name="dateStart">
+              </p-calendar>
+
+
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="time">Fim</label>
+              <p-calendar [(ngModel)]="taskSave.dateFinish" showTime="true" [hourFormat]="24" dateFormat="dd/mm/yy"
+                name="dateFinish">
+              </p-calendar>
+            </div>
+
+            <div class="col-12 md:col-4 field">
+              <label for="time">Horas</label>
+              <input id="input" type="text" pInputText [(ngModel)]="taskSave.totalTime" name="totalTime"
+                [required]="true" autocomplete="off" disabled="true" />
+            </div>
+
+          </div>
+          <ng-template pTemplate="footer">
+
+            <div class="col-12 md:col-12 text-right">
+
+              <button icon="" label="Cancelar" (click)="cancel()"
+                class="p-button-outlined p-button-secondary md:w-2 sm:col-12" type="button" pButton>
+              </button>
+              <button icon="" label="Adicionar" (click)="save()" class="ml-2 md:w-2 sm:col-12" type="button" pButton>
+              </button>
+            </div>
+          </ng-template>
+        </p-dialog>
+      </form>
+    </div>
+  </div>
+</div>

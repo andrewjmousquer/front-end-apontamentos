@@ -1,0 +1,56 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12">
+      <div class="col-12 md:col-12">
+        <div class="card no-margin">
+          <div class="p-title-card text-center">
+            <h5>{{checklist.name}}</h5>
+          </div>
+          <div>
+            <ng-container *ngFor="let ckGroup of checklist.groups">
+              <p-panel header="{{ckGroup.name}} {{ckGroup.answered}}/{{ckGroup.questions.length}}" [toggleable]="true"
+                > <!--[(collapsed)]="ckGroup['collapsed']"-->
+                <div *ngFor="let ckQuestion of ckGroup.questions" class="inline-block col-6 md:col-4 lg:col-3">
+                  <h6>{{ckQuestion.question}}</h6>
+                  <div class="formgroup-inline">
+                    <div *ngFor="let option of radioOptions" class="formgroup-inline field-radiobutton">
+                      <p-radioButton [value]="option.id" [(ngModel)]="ckQuestion.answer.answer.id"
+                        (ngModelChange)="saveOnChange(ckQuestion.answer, ckQuestion)"></p-radioButton>
+                      <label>{{option.value}}</label>
+                    </div>
+                  </div>
+
+                  <div class="formgroup-inline">
+                    <div class="field-radiobutton">
+                      <div id="openModal">
+                        <button pButton type="button" icon="fa fa-pencil" class="p-button-secondary p-button-sm"
+                          (click)="openCommentModal(ckQuestion.answer)"
+                          *ngIf="ckQuestion.answer.answer.id != undefined"></button>
+
+                      </div>
+                    </div>
+                    <div class="field-radiobutton">
+                      <p-fileUpload class="p-button-rounded" mode="basic" chooseIcon="pi pi-upload"
+                        name="demo[]" maxFileSize="100000000" [auto]="true" [customUpload]="true"
+                        (uploadHandler)="onUpload($event, ckQuestion)"
+                        *ngIf="ckQuestion.answer.answer.id  != undefined">
+                      </p-fileUpload>
+                    </div>
+                    <div>
+                      <button pButton type="button" icon="fa fa-comment"
+                        [class]="ckQuestion.answer.comment || ckQuestion.answer.photos.length > 0 ? 'p-button-success p-button-sm' : 'p-button-outlined p-button-sm'"
+                        (click)="openModalCommentView(ckQuestion.answer)"
+                        *ngIf="ckQuestion.answer.answer.id  != undefined"></button>
+                      <!---->
+                    </div>
+                    <!-- <button pButton type="button" class="p-button-text"></button> -->
+                  </div>
+                </div>
+              </p-panel>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

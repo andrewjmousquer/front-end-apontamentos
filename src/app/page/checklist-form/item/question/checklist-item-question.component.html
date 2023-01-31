@@ -1,0 +1,40 @@
+<h5>Itens</h5>
+<div class="spacer"></div>
+<div class="p-fluid grid form-group">
+  <div class="col-12 flex flex-row justify-content-end py-0">
+    <button type="button" label="Excluir" icon="fa fa-trash-o" s
+      class="p-button-outlined p-button-danger mr-3 md:w-10rem" pButton (click)="delete(group, questionSelected)"
+      [disabled]="disabled || !questionSelected" *ngIf="!disabled"></button>
+
+    <button type="button" label="Adicionar" icon="fa fa-plus" pButton class="md:w-10rem" (click)="novo()"
+      [disabled]="disabled" *ngIf="!disabled"></button>
+  </div>
+</div>
+<div class="spacer"></div>
+<p-orderList #orderList [value]="group?.questions" header="Itens" (onSelectionChange)="onSelectionChange($event)">
+  <ng-template let-question pTemplate="item">
+    <div>
+      <span (onClick)="onSelectionChange($event)">
+        {{question.question}}
+      </span>
+    </div>
+  </ng-template>
+</p-orderList>
+
+<div>
+  <p-dialog header="Adicionar" [(visible)]="adicionando" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+    [resizable]="false">
+    <div>
+      <label for="float-input">Nome do Item</label>
+      <input type="text" pInputText [(ngModel)]="question.question" name="addItem" />
+    </div>
+    <ng-template pTemplate="footer">
+      <button icon="pi pi-trash" (click)="cancelar()" label="Cancelar" class="p-button-raised p-button-danger"
+        type="button" pButton>
+      </button>
+      <button icon="pi pi-check" (click)="salvar(group, question)" label="Adicionar"
+        class="p-button-raised p-button-success" type="button" pButton>
+      </button>
+    </ng-template>
+  </p-dialog>
+</div>

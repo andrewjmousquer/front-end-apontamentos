@@ -1,0 +1,28 @@
+<div class="p-fluid grid form-group">
+    <div class="col-12 md:col-8 field">
+        <label for="float-input">Etapa</label>
+        <p-dropdown name="checklist" [(ngModel)]="selectedMovement" placeholder="Selecione" dataKey="id"
+            optionValue="id" optionLabel="name" [options]="movementList" [showClear]="true">
+        </p-dropdown>
+    </div>
+    <div class="col-12 md:col-12 field">
+        <h6>Selecione quais etapas deseja adicionar</h6>
+        <div *ngFor="let mv of descriptionMovimentList; let i = index" class="field-checkbox">
+            <div>
+                <p-checkbox name="stage_{{i}}" value="mv" [value]="mv.id" [(ngModel)]="selectedStage" class="pr-2"
+                    [inputId]="mv.id"></p-checkbox>
+                <label [for]="mv.id">{{mv.label}}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-12" style="padding-top: 2rem;">
+        <div class="p-fluid grid form-group" style="justify-content: right;">
+            <button pButton pRipple type="button" label="Cancelar"
+                class="p-button-raised p-button-secondary p-button-text m-1 md:w-2 sm:col-12"
+                (click)="closeModal(null)"></button>
+            <button pButton pRipple type="button" label="Adicionar" class="p-button-raised m-1 md:w-2 sm:col-12"
+                (click)="saveSpecialService()"></button>
+        </div>
+    </div>
+</div>

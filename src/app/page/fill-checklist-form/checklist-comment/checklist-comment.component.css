@@ -1,0 +1,16 @@
+::ng-deep .ui-fileupload-choose .fa-plus::before {
+
+    content: "\F0A6";
+    
+  }
+
+
+
+
+  .teste {
+    background-color: none !important;
+    border: none !important;
+    color: black !important;
+}
+
+

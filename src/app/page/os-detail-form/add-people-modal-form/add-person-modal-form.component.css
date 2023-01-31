@@ -1,0 +1,25 @@
+.button-row {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.center-button {
+    text-align: center !important;
+    justify-content: center;
+}
+
+.active-status {
+    background-color: #689F38;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.inactive-status {
+    background-color: #696a68;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    margin: auto;
+}

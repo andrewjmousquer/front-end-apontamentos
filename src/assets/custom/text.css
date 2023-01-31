@@ -1,0 +1,7 @@
+.text-danger {
+  color: #D32F2F;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

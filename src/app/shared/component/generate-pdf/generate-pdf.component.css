@@ -1,0 +1,22 @@
+table {
+  width: 306px;
+  height: auto;
+  border-collapse: collapse;
+}
+td,
+th {
+  text-align: left;
+  padding: 0px;
+  padding: 4px 5px 0 5px;
+}
+
+#proof-title {
+  font-size: 1.1rem;
+  text-align: center;
+
+}
+
+#proof-subtitle {
+  font-size: 0.778rem;
+  text-align: center;
+}

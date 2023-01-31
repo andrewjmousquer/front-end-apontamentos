@@ -1,0 +1,12 @@
+<div class="card">
+  <p-tabView>
+    <p-tabPanel header="Comentários">
+      <p>
+        {{model.comment}}
+      </p>
+    </p-tabPanel>
+    <p-tabPanel header="Fotos" class="text-center">
+        <p-image *ngFor="let images of answer?.photos" [src]="images.url" alt="Image" width="550" height="400"></p-image>
+    </p-tabPanel>
+  </p-tabView>
+</div>

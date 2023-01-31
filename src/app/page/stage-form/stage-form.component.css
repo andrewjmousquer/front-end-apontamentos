@@ -1,0 +1,43 @@
+.foodlover-item {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    width: 100%;
+}
+
+.foodlover-list-detail {
+    flex: 1 1 0;
+}
+
+.foodlover-list-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.foodlover-category-icon {
+    vertical-align: middle;
+    margin-right: .5rem;
+}
+
+.foodlover-category {
+    vertical-align: middle;
+    line-height: 1;
+}
+
+@media screen and (max-width: 576px) {
+    .foodlover-item {
+        flex-wrap: wrap;
+
+    }
+
+    .image-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    img {
+        margin: 0 0 1rem 0;
+        width: 100px;
+    }
+}

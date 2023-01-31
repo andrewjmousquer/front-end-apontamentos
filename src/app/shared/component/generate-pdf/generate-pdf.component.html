@@ -1,0 +1,54 @@
+ <table #proof>
+   <tr>
+     <td>
+       <p id="proof-title">COMPROVANTE&nbsp; DE APONTAMENTO</p>
+     </td>
+   </tr>
+   <tr>
+     <td><b>OS&nbsp;&nbsp;:&nbsp;</b> {{
+          taskByUser.task?.serviceOrder?.number != "" &&
+          taskByUser.task?.serviceOrder?.number != null
+            ? taskByUser.task?.serviceOrder?.number : task.numberOS}}</td>
+   </tr>
+   <tr>
+     <td><b>MODELO&nbsp;:&nbsp;</b>
+       {{
+          taskByUser.task?.serviceOrder?.model != "" &&
+         taskByUser.task?.serviceOrder?.model != null
+            ? taskByUser.task?.serviceOrder?.brand : task.brand}}&nbsp; 
+            {{taskByUser.task?.serviceOrder?.model != "" &&
+            taskByUser.task?.serviceOrder?.model != null ? taskByUser.task?.serviceOrder?.model : task.model}}</td>
+
+
+   </tr>
+   <tr>
+     <td><b>COLABORADOR&nbsp;&nbsp;&nbsp;:&nbsp;</b>
+       {{taskByUser.name != "" && taskByUser.name != null ? taskByUser.name : task.userName}}</td>
+   </tr>
+   <tr>
+     <td><b>ETAPA&nbsp;&nbsp;:&nbsp;</b> {{
+          taskByUser.task?.stage?.name != "" &&
+          taskByUser.task?.stage?.name != null
+               ? taskByUser.task?.stage?.name: task.stageName}}</td>
+   </tr>
+   <tr *ngIf="taskByUser.dateStart != null">
+     <td><b>INICIO&nbsp;&nbsp;ETAPA&nbsp; :&nbsp;</b> {{taskByUser.dateStart | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+   </tr>
+   <tr *ngIf="task.dateStart != null">
+     <td><b>INICIO&nbsp;&nbsp;ETAPA&nbsp; :&nbsp;</b> {{task.dateStart | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+   </tr>
+   <tr *ngIf="taskByUser.dateFinish != null">
+     <td><b>FIM&nbsp;&nbsp;ETAPA&nbsp; :&nbsp;</b> {{taskByUser.dateFinish | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+   </tr>
+   <tr *ngIf="task.dateFinish != null">
+     <td><b>FIM&nbsp;&nbsp;ETAPA&nbsp; :&nbsp;</b> {{task.dateFinish | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+   </tr>
+   <tr>
+     <td style="text-align: center; ">Emissão&nbsp;: {{currentDate | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+   </tr>
+   <tr>
+     <td>
+       <p id="proof-subtitle">CARBON BLINDADOS</p>
+     </td>
+   </tr>
+ </table>

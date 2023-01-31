@@ -1,0 +1,15 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12 lg:col-5">
+      <div class="card no-margin">
+        <sbm-checklist-list #list></sbm-checklist-list>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-7">
+      <div class="card no-margin">
+        <sbm-checklist-item [checklist]="list?.checkListSelected" [disabled]="!list?.checkListSelected" (onReload)="onReload()"></sbm-checklist-item>
+      </div>
+    </div>
+  </div>
+</div>

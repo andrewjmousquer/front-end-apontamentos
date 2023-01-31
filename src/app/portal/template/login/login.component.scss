@@ -1,0 +1,956 @@
+:host {
+    display: block;
+}
+
+.pt-5 {
+    padding-top: 1rem !important;
+    padding-right: 4rem;
+}
+
+.login-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background: #fbfbfb;
+    text-align: center;
+    color: #000000;
+    padding: 0em;
+}
+
+.app-title {
+    color: black;
+    font-size: 5rem;
+    font-weight: 600;
+}
+
+.login-body .login-panel {
+    border-top: 9px solid transparent;
+}
+
+.login-panel {
+    background-color: #ffffff;
+    width: 700px;
+    text-align: -webkit-center;
+}
+
+.login-body .login-panel {
+
+    margin-top: -281px;
+    margin-left: -391px;
+
+    
+    p {
+        color: #000000;
+        font-size: large;
+    }
+
+    label {
+        color: #000000;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    input {
+        background: transparent;
+        border: 1px solid #dadada;
+        color: #242323;
+        padding: .429em;
+        width: 100%;
+        font-size: 2.5rem;
+
+        &:hover,
+        &:focus {
+            outline: 0 none;
+            border-color: #dadada;
+        }
+    }
+}
+
+.login-body .login-panel h5 {
+    color: rgb(3, 3, 3);
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.login-body .login-panel button {
+    display: inline;
+    text-align: center;
+    color: white;
+    background-color: #1c7cf1;
+    border: 5px solid #1c7cf1;
+    width: 50%
+}
+
+.input-position {
+    width: 70%;
+    text-align-last: left;
+}
+
+.expired-password-dialog {
+    width: 50vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expired-password-form {
+    text-align: center;
+    padding: 36px 10px;
+}
+
+.jasper-logout-iframe {
+    visibility: hidden;
+}
+
+.login-body .login-panel {
+    height: auto;
+}
+
+@media only screen and (max-height: 721px) {
+
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 5rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 9px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 700px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -251px;
+        margin-left: -391px;
+    
+        
+        p {
+            color: #000000;
+            font-size: large;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 2.5rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: x-large;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+
+
+}
+
+@media only screen and (max-height: 691px) {
+
+    .login-body .login-panel {
+        border-top: 5px solid transparent;
+    }
+
+    .pt-5 {
+        padding-top: 0.5rem !important;
+        padding-right: 3rem;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+    
+.login-body .login-panel {
+
+        margin-top: -240px;
+        
+        p {
+            color: #000000;
+            font-size: large;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 2.5rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+
+    .jasper-logout-iframe {
+        visibility: collapse;
+    }
+    
+}
+
+@media only screen and (max-height: 595px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 3rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 4px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -190px;
+        
+        p {
+            color: #000000;
+            font-size: small;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.0rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 1.5rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: x-large;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 483px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 3rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 3px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        height: 300px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -190px;
+        
+        p {
+            color: #000000;
+            font-size: small;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.0rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 1.0rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: x-large;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 460px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 3rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 3px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        height: 300px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -150px;
+        
+        p {
+            color: #000000;
+            font-size: small;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.0rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 1.0rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: small;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 460px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 3rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 3px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        height: 300px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -150px;
+        
+        p {
+            color: #000000;
+            font-size: small;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.0rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 1.0rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: small;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 640px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 4rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 9px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -95px;
+        
+        p {
+            color: #000000;
+            font-size: large;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 2.5rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: x-large;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 5px solid #1c7cf1;
+        width: 50%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 383px) { 
+
+    :host {
+        display: block;
+    }
+    
+    .pt-5 {
+        padding-top: 1rem !important;
+        padding-right: 3rem;
+    }
+    
+    .login-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background: #fbfbfb;
+        text-align: center;
+        color: #000000;
+        padding: 0em;
+    }
+    
+    .app-title {
+        color: black;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel {
+        border-top: 3px solid transparent;
+    }
+    
+    .login-panel {
+        background-color: #ffffff;
+        width: 500px;
+        height: 300px;
+        text-align: -webkit-center;
+    }
+    
+    .login-body .login-panel {
+    
+        margin-top: -130px;
+        
+        p {
+            color: #000000;
+            font-size: small;
+        }
+    
+        label {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.0rem;
+        }
+    
+        input {
+            background: transparent;
+            border: 1px solid #dadada;
+            color: #242323;
+            padding: .429em;
+            width: 100%;
+            font-size: 0.9rem;
+    
+            &:hover,
+            &:focus {
+                outline: 0 none;
+                border-color: #dadada;
+            }
+        }
+    }
+    
+    .login-body .login-panel h5 {
+        color: rgb(3, 3, 3);
+        font-size: small;
+        font-weight: 600;
+    }
+    
+    .login-body .login-panel button {
+        display: inline;
+        text-align: center;
+        color: white;
+        background-color: #1c7cf1;
+        border: 2px solid #1c7cf1;
+        width: 30%
+    }
+    
+    .input-position {
+        width: 70%;
+        text-align-last: left;
+    }
+    
+    .expired-password-dialog {
+        width: 50vw;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .expired-password-form {
+        text-align: center;
+        padding: 36px 10px;
+    }
+    
+    .jasper-logout-iframe {
+        visibility: hidden;
+    }
+    
+    .login-body .login-panel {
+        height: auto;
+    }
+}

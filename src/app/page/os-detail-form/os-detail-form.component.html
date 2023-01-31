@@ -1,0 +1,285 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12 md:col-12">
+      <div class="card no-margin grid">
+        <div class="no-margin grid">
+          <div class="col-12 md:col-6 p-3">
+            <form>
+              <h5>Detalhamento</h5>
+              <p-divider></p-divider>
+              <div class="p-fluid grid form-group">
+                <div class="field col-12 md:col-4">
+                  <label for="Identification">Nº da OS</label>
+                  <div class="input-group-clear">
+                    <input id="input" type="text" pInputText [(ngModel)]="os.number" name="numberOS" disabled="true" />
+                  </div>
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="Identification">Marca</label>
+                  <div class="input-group-clear">
+                    <input id="input" type="text" pInputText [(ngModel)]="os.brand" name="brand" disabled="true" />
+                  </div>
+                </div>
+                <div class="field col-12 md:col-4">
+                  <label for="Identification">Modelo</label>
+                  <div class="input-group-clear">
+                    <input id="input" type="text" pInputText [(ngModel)]="os.model" name="model" disabled="true" />
+                  </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="Identification">Placa</label>
+                  <div class="input-group-clear">
+                    <input id="input" type="text" pInputText [(ngModel)]="os.plate" name="plate" disabled="true" />
+                  </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="Identification">Chassi</label>
+                  <div class="input-group-clear">
+                    <input id="input" type="text" pInputText [(ngModel)]="os.chassi" name="chassi" disabled="true" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-12 md:col-6 p-3">
+            <h5>Tarefas em Aberto</h5>
+            <p-divider></p-divider>
+            <p-table #tab [columns]="colsInOpened" [value]="inOpenedList" [responsive]="true" selectionMode="single"
+              [rows]="5" [showCurrentPageReport]="false" [paginator]="true" [scrollable]="true"
+              [(selection)]="selectedTask" (onRowSelect)="loadStageDetailByTask($event.data)"
+              (onRowUnselect)="resetLists()">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="min-width: 90%;">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                  <!--             <th></th> -->
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td title="{{rowData['name']}}" style="min-width: 90%;">
+                    {{rowData['name'] != null ? rowData['name'] : '--'}}
+                  </td>
+                  <!-- <td class="center-button">
+                  <button pButton pRipple type="button" icon="pi pi-check"
+                    class="p-button-rounded p-button button-row p-button-success" (click)="null"></button>
+                </td> -->
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="col-12 md:col-6 p-3">
+            <h5>Tarefas em Andamento</h5>
+            <p-divider></p-divider>
+            <p-table #ta [columns]="colsInProgress" [value]="inProgressList" dataKey="id" [responsive]="true"
+              [(selection)]="selectedTask" selectionMode="single" [rows]="5" [showCurrentPageReport]="false"
+              [paginator]="true" [scrollable]="true" (onRowSelect)="loadStageDetailByTask($event.data)"
+              (onRowUnselect)="resetLists()">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td title="{{rowData['status']['value']}}">
+                    {{rowData['status']['value'] != null ? rowData['status']['label']: '--'}}
+                  </td>
+                  <td title="{{rowData['stage']['name']}}">
+                    {{rowData['stage']['name']!= null ? rowData['stage']['name'] : '--'}}
+                  </td>
+                  <td title="{{rowData['totalTime']}}">
+                    {{rowData['totalTime']!= null ? rowData['totalTime'] : '--'}}
+                  </td>       
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="col-12 md:col-6 p-3">
+            <h5>Tarefas Finalizadas</h5>
+            <p-divider></p-divider>
+            <p-table #tf [columns]="colsFinished" [value]="finishedList" dataKey="totalTime" [responsive]="true"
+              [(selection)]="selectedTask" selectionMode="single" [rows]="5" [showCurrentPageReport]="false"
+              dataKey="id" [paginator]="true" [scrollable]="true" (onRowSelect)="loadStageDetailByTask($event.data)"
+              (onRowUnselect)="resetLists()">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td title="{{rowData['stage']['name']}}">
+                    {{rowData['stage']['name'] != null ? rowData['stage']['name'] : '--'}}
+                  </td>
+                  <td title="{{rowData['stage']['special']}}" class="justify-content-center">
+                    <i class="pi pi-check-circle" *ngIf="rowData['stage']['special'] == true"></i>
+                    <span *ngIf="rowData['stage']['special'] == false">--</span>
+                  </td>
+                  <td title="{{rowData['totalTime']}}">
+                    {{rowData['totalTime']!= null ? rowData['totalTime'] : '--'}}
+                  </td>
+                  <td>
+                    <a [href]="rowData['checklistFile']" target="_blank" *ngIf="rowData['checklistFile'] != null">
+                      <button pButton pRipple type="button" icon="pi pi-download"
+                        class="p-button-rounded p-button button-row p-button-info"></button>
+                    </a>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="col-12 md:col-12 pl-5  pr-2">
+            <h5>Detalhamento de Etapas: <b><u>{{selectedTask.name}}</u></b></h5>
+            <p-divider></p-divider>
+          </div>
+          <div class="col-12 md:col-12 grid">
+            <div class="col-12 lg:col-7 p-3">
+              <div class="col-12 md:col-12 pb-3">
+                <span class="title-detail">Apontamentos</span>
+                <button pButton pRipple type="button" icon="pi pi-tag" label="Serviço Especial"
+                  class="p-button-raised p-button-warning" (click)="openModal(os.number, 'Serviço Especial')"
+                  *ngIf="selectedTask.id != null && selectedTask.status.value == 'EM_ANDAMENTO' && hasmovementsTmp.length >= 1"
+                  style="float: right;"></button>
+              </div>
+              <div class="pt-3">
+                <p-table #tab [columns]="colsStageDetails" [value]="stageDetailsList" dataKey="idRegisterTime"
+                  [responsive]="true" [rows]="5" [showCurrentPageReport]="false" [paginator]="true" [scrollable]="true">
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                      </th>
+                      <th style="max-width: 12%;"></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                      <td title="{{rowData['userName']}}">
+                        {{rowData['userName']}}
+                      </td>
+                      <td title="{{rowData['dateStart']}}">
+                        {{rowData['dateStart'] | date:"dd/MM/yyyy HH:mm:ss"}}
+                      </td>
+                      <td title="{{rowData['dateFinish']}}">
+                        {{rowData['dateFinish'] != null ? (rowData['dateFinish'] | date:"dd/MM/yyyy HH:mm:ss") : '--'}}
+                      </td>
+                      <td title="{{rowData['totalTime']}}">
+                        {{rowData['totalTime']}}
+                      </td>
+                      <td class="center-button" style="max-width: 12%;">
+                        <button pButton pRipple type="button" icon="pi pi-check"
+                          class="p-button-rounded p-button button-row p-button-success"
+                          *ngIf="rowData['dateFinish'] != null" (click)="openModal(rowData,  'Editar Hora')"></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        Total Horas: {{selectedTask.totalTime != null ? selectedTask.totalTime : ' --' }}
+                      </td>
+                      <td></td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+            <div class="col-12 lg:col-5 p-3">
+              <div class="col-12 md:col-12  pb-3">
+                <span class="title-detail col-4">Lista de Usuários</span>
+
+                <button pButton pRipple type="button" icon="pi pi-user-plus" label="Adicionar"
+                class="p-button-raised p-button-warning m-1 md:w-3 col-4" (click)="openModal(selectedTask, 'Adicionar Pessoa')"
+                *ngIf="selectedTask.id != null && selectedTask.status.value != 'FINALIZADO'"
+                style="float: right;"></button>
+                <button pButton pRipple type="button" icon="fa fa-list-alt" label="Checklist"
+                  class="p-button-outlined m-1 md:w-3 col-4" (click)="openModal(selectedTask.id,'Preenchimento de Checklist')"
+                  *ngIf="selectedTask.id != null && hasChecklist"
+                  style="float: right;"></button>
+              </div>
+              <div class="pt-3">
+                <p-table #tab [columns]="colsUserList" [value]="taskUserList" dataKey="id" [responsive]="true"
+                  [rows]="5" [showCurrentPageReport]="false" [paginator]="true" [scrollable]="true">
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                      </th>
+                      <th style="max-width: 16%;"></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                      <td title="{{rowData['name']}}">
+                        {{rowData['name']}}
+                      </td>
+                      <td title="{{rowData['status']['value']}}">
+                        {{rowData['status']['label']}}
+                      </td>
+                      <td class="center-button" style="max-width: 16%;">
+                        <button pButton type="button" icon="fa fa-play" class="p-button-text p-2 p-button-success"
+                          (click)="changeTaskStatus(rowData, 'resume')"
+                          *ngIf="selectedTask.status.value != 'EM_ANDAMENTO' && rowData['status']['value'] != 'FINALIZADO'"></button>
+                        <button pButton type="button" icon="fa fa-pause" class="p-button-text p-2 p-button-warning"
+                          (click)="changeTaskStatus(rowData, 'pause')"
+                          *ngIf="selectedTask.status.value != 'PAUSADO' && rowData['status']['value'] != 'FINALIZADO'"></button>
+                        <button pButton type="button" icon="fa fa-stop" class="p-button-text p-2 p-button-danger"
+                          (click)="changeTaskStatus(rowData, 'finish')"
+                          *ngIf="rowData['status']['value'] != 'FINALIZADO'"></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12">
+            <div class="p-fluid grid form-group" style="justify-content: right;">
+              <button pButton pRipple type="button" label="Voltar"
+                class="p-button-raised p-button-secondary p-button-text m-2 md:w-2 sm:col-12" (click)="back()"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

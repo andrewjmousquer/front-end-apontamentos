@@ -1,0 +1,9 @@
+.button-row {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.centerButton {
+    text-align: center !important;
+    justify-content: center;
+}

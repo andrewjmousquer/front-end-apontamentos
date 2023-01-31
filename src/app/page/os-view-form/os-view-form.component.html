@@ -1,0 +1,75 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12 lg:col-12">
+      <div class="card no-margin">
+        <form #seasonSearchForm="ngForm" (ngSubmit)="search()">
+          <h5>Visualização de OS</h5>
+          <div class="p-fluid grid form-group">
+            <div class="field col-12 md:col-4">
+              <label for="Identification">Nº da OS</label>
+              <div class="input-group-clear">
+                <input id="input" type="text" pInputText [(ngModel)]="osSearch.number" name="numberOS" />
+              </div>
+            </div>
+            <div class="col-12 md:col-8" style="padding-top: 2rem;">
+              <div class="p-fluid grid form-group">
+                <button pButton pRipple type="submit" label="Buscar" icon="fa fa-search"
+                  class="p-button-raised p-button-info m-2 md:w-3 sm:col-12"></button>
+                <button pButton pRipple type="button" label="Limpar" icon="fa fa-times"
+                  class="p-button-raised p-button-secondary p-button-text m-2 md:w-3 sm:col-12"
+                  (click)="clear()"></button>
+              </div>
+            </div>
+            <div class="col-12 md:col-12">
+              <p-table #dt [columns]="cols" [value]="osViewList" dataKey="id" [style]="{'margin-bottom':'20px'}"
+                [responsive]="true" selectionMode="single" (onRowSelect)="null" (onRowUnselect)="null" [rows]="10"
+                [showCurrentPageReport]="false" [paginator]="true" [scrollable]="true">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <th></th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData">
+                    <td title="{{rowData['number']}}">
+                      {{rowData['number']}}
+                    </td>
+                    <td title="{{rowData['brand']}}">
+                      {{rowData['brand'] != null ? rowData['brand'] : '--'}}
+                    </td>
+                    <td title="{{rowData['model']}}">
+                      {{rowData['model']!= null ? rowData['model'] : '--'}}
+                    </td>
+                    <td title="{{rowData['plate']}}">
+                      {{rowData['plate']!= null ? rowData['plate'] : '--'}}
+                    </td>
+                    <td title="{{rowData['chassi']}}">
+                      {{rowData['chassi']!= null ? rowData['chassi'] : '--'}}
+                    </td>
+                    <td title="{{rowData['statusOs']['value']}}">
+                      {{rowData['statusOs']['value']!= null ? rowData['statusOs']['label'] : '--'}}
+                    </td>
+                    <td class="centerButton">
+                      <button pButton pRipple type="button" icon="pi pi-check"
+                        class="p-button-rounded p-button button-row p-button-success"
+                        (click)="openDetail(rowData.id)"></button>
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

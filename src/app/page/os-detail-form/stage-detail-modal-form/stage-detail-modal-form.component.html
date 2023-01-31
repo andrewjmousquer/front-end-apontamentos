@@ -1,0 +1,36 @@
+<form #stageDetailForm="ngForm" (ngSubmit)="save()">
+    <div class="p-fluid grid form-group">
+        <div class="col-12 md:col-4 field">
+            <label for="float-input">Nome</label>
+            <input id="input" type="text" pInputText [(ngModel)]="task.userName" name="userName" disabled="true" />
+        </div>
+        <div class="col-12 md:col-3 field">
+            <label for="float-input">Data Início</label>
+            <p-calendar [showTime]="true" [showSeconds]="true" inputId="time" appendTo="body" [(ngModel)]="dateStart"
+                name="dateStart">
+            </p-calendar>
+        </div>
+        <div class="col-12 md:col-3 field">
+            <label for="float-input">Data Fim</label>
+            <p-calendar [showTime]="true" [showSeconds]="true" inputId="time" appendTo="body" [(ngModel)]="dateFinish"
+                name="dateFinish">
+            </p-calendar>
+        </div>
+        <div class="col-12 md:col-2 field">
+            <label for="float-input">Horas</label>
+            <input name="totaltime" pInputText [(ngModel)]="task.totalTime" disabled="true">
+        </div>
+        <div class="col-12 md:col-12">
+            <div class="p-fluid grid form-group" style="justify-content: right;">
+                <button pButton pRipple type="button" icon="fa fa-times" label="Cancelar"
+                class="p-button-raised p-button-secondary p-button-text m-2 md:w-2 sm:col-12"
+                (click)="closeModal()"></button>
+                <button pButton pRipple type="button"  icon="fa fa-print" label="Imprimir Comprovante"
+                    class="p-button-secondary m-2 md:w-2 sm:col-12"
+                    (click)="printReceipt(task)"  style="float: left;"></button>
+                <button pButton pRipple type="submit" icon="fa fa-clock-o" label="Modificar Horário"
+                    class="p-button-raised p-button-info m-2 md:w-2 sm:col-12"></button>
+            </div>
+        </div>
+    </div>
+</form>

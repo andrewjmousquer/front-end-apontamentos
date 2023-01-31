@@ -1,0 +1,68 @@
+<form #stageForm="ngForm" (ngSubmit)="addMovement()">
+  <div class="grid">
+    <div class="col-12" [ngClass]="{'lg:col-5' : !horizontal}">
+      <div class="p-fluid grid form-group">
+        <div class="col field" [ngClass]="{'col-12' : !horizontal}">
+          <label for="registerName">Nome <span class="text-danger">*</span></label>
+          <input id="input" type="text" pInputText [(ngModel)]="movement.name" name="nameBotton" required
+            autocomplete="off" />
+        </div>
+        <div class="col field" [ngClass]="{'col-12' : !horizontal}">
+          <label for="registerName">Icon <span class="text-danger">*</span></label>
+          <input id="input" type="text" pInputText [(ngModel)]="movement.icon" name="icon" required
+            autocomplete="off" />
+        </div>
+        <div class="col field" [ngClass]="{'col-12' : !horizontal}">
+          <label for="registerName">Jira ID <span class="text-danger">*</span></label>
+          <input id="input" type="number" min="0" pInputText [(ngModel)]="movement.jiraID" name="jiraID" required
+            autocomplete="off" />
+        </div>
+        <div class="col field" [ngClass]="{'col-12' : !horizontal}">
+          <label for="contactType">Tipo <span class="text-danger">*</span></label>
+          <p-dropdown [options]="typeList" filter="true" [optionValue]="" [autoDisplayFirst]="false"
+            [(ngModel)]="movement.type" name="contactType" dataKey="id" optionLabel="value" [showClear]="false"
+            required></p-dropdown>
+        </div>
+        <div class="col field" [ngClass]="{'pt-5' : horizontal}">
+          <button type="submit" label="Adicionar" icon="fa fa-save" pButton [disabled]="stageForm.invalid"></button>
+        </div>
+        <div class="col field" *ngIf="!horizontal">
+          <button type="button" label="Novo" icon="fa fa-file-o" pButton class="p-button-outlined"
+            (click)="resetContactForm()"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" [ngClass]="{'lg:col-7 pt-5' : !horizontal}">
+      <p-table #tableMovements [columns]="cols" [value]="movementsSavedsList" [style]="{'margin-bottom':'20px'}"
+        [responsive]="true" selectionMode="single" [(selection)]="movement" (onRowSelect)="editMovement($event)"
+        (onRowUnselect)="resetMovementForm()" [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+        [scrollable]="true">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.filter">
+              {{col.header}} <p-sortIcon [field]="col.filter"></p-sortIcon>
+            </th>
+            <th class="column-small"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{rowData[col.field].value ? rowData[col.field]?.value : (rowData[col.field].name ?
+              rowData[col.field].name : rowData[col.field]) }}
+            </td>
+            <td class="justify-content-end column-small">
+              <button pButton type="button" class="p-button p-button-rounded p-button-danger" icon="pi pi-trash"
+                (click)="removeMovement(rowData)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8" class="justify-content-center">Sem registros encontrados</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</form>

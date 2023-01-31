@@ -1,0 +1,19 @@
+<form #stageDetailForm="ngForm" (ngSubmit)="changeStage()">
+    <div class="p-fluid grid form-group">
+        <div class="col-12 md:col-8 field">
+            <label for="float-input">Próxima Etapa</label>
+            <p-dropdown name="movement" dataKey="id" optionLabel="name" [options]="movements" [showClear]="true"
+                placeholder="Selecione" [(ngModel)]="selectedMovement">
+            </p-dropdown>
+        </div>
+        <div class="col-12 md:col-12">
+            <div class="p-fluid grid form-group" style="justify-content: center;">
+                <button pButton pRipple type="button" label="Cancelar"
+                    class="p-button-raised p-button-secondary p-button-text m-2 md:w-5 sm:col-12"
+                    (click)="closeModal(null)"></button>
+                <button pButton pRipple type="submit" label="Modificar Etapa"
+                    class="p-button-raised p-button-info m-2 md:w-5 sm:col-12"></button>
+            </div>
+        </div>
+    </div>
+</form>

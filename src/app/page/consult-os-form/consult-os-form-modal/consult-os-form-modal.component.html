@@ -1,0 +1,67 @@
+<div class="col-12 p-0 body-modal">
+  <div class="pb-2">{{ header }}</div>
+  <div class="col">
+    <label class="p-label-title">Nº da OS: </label>
+    <span>{{task.serviceOrder.number}}</span>
+  </div>
+  <div class="col ">
+    <label class="p-label-title">Marca: </label>
+    <span>{{task.serviceOrder.brand}}</span>
+  </div>
+  <div class="col">
+    <label class="p-label-title">Modelo: </label>
+    <span>{{task.serviceOrder.model}}</span>
+  </div>
+  <div class="col" *ngIf="(hasChecklist && taskByUser?.status?.value !== 'AGUARDANDO_INICIO') && taskByUser?.status?.value == 'EM_ANDAMENTO'">
+    <label class="p-label-title">Checklist: </label>
+      <button pButton pRipple type="button" label="Checklist" icon="fa fa-list-alt" class="p-button-outlined mb-3 md:w-3 col-4 " style="float: right;"
+        (click)="openChecklistModal(task?.id, 'Preenchimento de Checklist')"></button>
+  </div>
+  <div class="col-12 p-0">
+    <div class="col p-0 envolveds" *ngIf="(listUsers.length > 0 && task.status.value !== 'AGUARDANDO_INICIO')"> 
+      <p-divider></p-divider>
+      <h5>Envolvidos</h5>
+      <div class="col-12 p-0" *ngFor="let users of listUsers">
+        <div class="col">
+          <label class="p-label-title">Nome: </label>
+          <span>{{users.name}} - </span>
+          <span [style]="users.status?.value == 'EM_ANDAMENTO' ? 'color: #008000;' : users.status.value == 'PAUSADO' ? 'color: #e0ac08;' : 'color: #d14040;'">{{users.status.label}}</span>
+        </div>
+      </div>
+      <div class="col text-center p-2">
+        <label class="p-label-title">Tempo de Serviço: </label>
+        <span class="p-label-title">{{totalTaskTime}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12" style="padding-top: 1rem">
+  <div class="p-fluid grid form-group" style="justify-content: right">
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Cancelar"
+      icon="fa fa-times"
+      class="p-button-outlined m-3 md:w-3 col-4"
+      (click)="closeModal('movement')"></button>
+    <button
+      *ngIf="taskByUser?.status?.value !== 'EM_ANDAMENTO' &&  taskByUser?.status?.value !== 'PAUSADO'"
+      pButton
+      pRipple
+      type="button"
+      label="Iniciar"
+      icon="fa fa-play"
+      class="p-button-raised p-button-info m-3 md:w-3 col-4"
+      (click)="movimentTasks('start')"></button>
+    <button
+      *ngIf="taskByUser?.status?.value == 'EM_ANDAMENTO' || taskByUser?.status?.value == 'PAUSADO'"
+      pButton
+      pRipple
+      type="button"
+      label="Finalizar"
+      icon="fa fa-check-circle-o"
+      class="p-button-raised p-button-secondary m-3 md:w-3 col-4"
+      (click)="movimentTasks('finish')"></button>
+  </div>
+</div>

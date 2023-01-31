@@ -1,0 +1,43 @@
+<form #form="ngForm" (ngSubmit)="save(checklist)" novalidate>
+  <h5>Checklist</h5>
+  <div class="p-fluid grid form-group">
+    <div class="col-12 md:col-12 field">
+      <label for="float-input" class="formTitle">Nome <span class="text-danger">*</span></label>
+      <input id="input" type="text" pInputText placeholder="Checklist" pInputText [(ngModel)]="checklist.name"
+        name="checkListName" [required]="true" autocomplete="off" [disabled]="disabled" />
+    </div>
+
+    <div class="col-12 md:col-12 field">
+      <label for="float-input" class="formTitle">Descrição <span class="text-danger">*</span></label>
+      <textarea [rows]="2" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="checklist.descrition"
+        name="Checklist" [required]="true" autocomplete="on" [disabled]="disabled"></textarea>
+    </div>
+
+  </div>
+
+  <div class="p-fluid grid form-group">
+    <div class="col-12 md:col-12">
+      <sbm-checklist-item-group #group [checklist]="checklist" [disabled]="disabled"></sbm-checklist-item-group>
+    </div>
+
+    <div class="col-12 md:col-12">
+      <sbm-checklist-item-question [group]="group.groupSelected" [disabled]="disabled || !group.groupSelected">
+      </sbm-checklist-item-question>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="p-fluid grid form-group">
+    <div class="col-12 flex flex-row justify-content-end py-0">
+      <button type="button" label="Cancelar" icon="fa fa-ban" class="p-button-outlined p-button-light mr-3 md:w-10rem"
+        *ngIf="checklist.id" pButton (click)="novo()"></button>
+      <button type="button" label="Excluir" icon="fa fa-trash-o"
+        class="p-button-outlined p-button-danger mr-3 md:w-10rem" *ngIf="checklist.id" pButton
+        (click)="remove(checklist)"></button>
+      <button type="button" label="Novo" icon="fa fa-file-o" pButton
+        class="p-button-outlined p-button-secondary mr-3 md:w-10rem" (click)="novo()"></button>
+      <button type="submit" label="Salvar" icon="fa fa-save" pButton class="md:w-10rem"
+        [disabled]="disabled || form.form.status != 'VALID'"></button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,25 @@
+.p-label-title {
+    color: black;
+    font-weight: bold;
+}
+
+.p-title-card{
+    color: #ffff;
+    background-color: rgb(65, 62, 62);
+    border-radius: 0.5rem;
+}
+
+.p-title-card h5{
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.grid-os {
+    min-height: 350px;;
+}
+
+.grid-no-os {
+    position: sticky;
+    left: -5%;
+    top: 40%;
+}

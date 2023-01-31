@@ -1,0 +1,10 @@
+.p-title-card{
+    color: #ffff;
+    background-color: rgb(65, 62, 62);
+    border-radius: 0.5rem;
+}
+
+.p-title-card h5{
+    padding: 0.5rem;
+    font-weight: 600;
+}

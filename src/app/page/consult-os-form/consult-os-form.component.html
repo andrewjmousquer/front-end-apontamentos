@@ -1,0 +1,167 @@
+<div class="ui-fluid">
+  <div class="grid">
+    <div class="col-12">
+      <div class="col-12 md:col-12">
+        <div class="card no-margin">
+          <form (ngSubmit)="search(null)" [formGroup]="consultSearch">
+            <h5>Buscar Ordem de Serviço</h5><p style="float: right; font-size: 2rem;" *ngIf="hasLogoutOnAction">Você irá desconectar em: <strong>{{timeLeft}}</strong> segundos</p>
+            <div class="p-fluid grid form-group">
+              <div class="col-12 md:col-3 field">
+                <label for="Identification">Buscar</label>
+                <div class="input-group-clear">
+                  <input
+                    id="input"
+                    type="text"
+                    pInputText
+                    placeholder="Número da OS ou Chassi"
+                    formControlName="osOrChassi"
+                    name="search"/>
+                  <a (click)="resetSearchForm()"
+                    *ngIf="consultSearch.get('osOrChassi').value != ''"><i class="pi pi-times"></i></a>
+                </div>
+              </div>
+              <div class="md:col-1 mt-3 pt-3">
+                <button
+                  type="submit"
+                  label="Buscar"
+                  icon=""
+                  class="p-element p-button p-component mr-3"
+                  pButton></button>
+              </div>
+            </div>
+            <div class="p-fluid grid form-group">
+              <div class="col-12 md:col-12 grid">
+                <div class="col-12 md:col-9 field">
+                  <div class="card grid-os">
+                    <div class="p-title-card text-center">
+                      <h5>Tarefas em Aberto</h5>
+                    </div>
+                    <div class="col-12 p-0 grid-no-os">
+                      <div class="grid">
+                        <p-card
+                          class="col-12 md:col-6 lg:col-4"
+                          *ngFor="let item of consultList">
+                          <div class="col text-center pt-0 mt-0">
+                            <p-header>
+                              {{ item.stage.name }}
+                            </p-header>
+                          </div>
+                          <div class="col-12 p-0 m-0">
+                            <div class="col text-center text-sm">
+                              <i class="fa fa-circle"
+                                aria-hidden="true"
+                                style="color: #3171e0"></i>
+                              <span> {{ item.serviceOrder?.statusOs.label }}</span>
+                            </div>
+                            <div class="col">
+                              <label class="p-label-title">Nº da OS: </label>
+                              <span>{{
+                                item.serviceOrder?.number != "" &&
+                                item.serviceOrder?.number != null
+                                  ? item.serviceOrder?.number : "--"}}</span>
+                            </div>
+                            <div class="col">
+                              <label class="p-label-title">Marca: </label>
+                              <span>{{
+                                item.serviceOrder?.brand != "" &&
+                                item.serviceOrder?.brand != null
+                                  ? item.serviceOrder?.brand : "--"}}</span>
+                            </div>
+                            <div class="col">
+                              <label class="p-label-title">Modelo: </label>
+                              <span>{{
+                                item.serviceOrder?.model != "" &&
+                                item.serviceOrder?.model != null
+                                  ? item.serviceOrder?.model : "--"}}</span>
+                            </div>
+                            <div class="col">
+                              <label class="p-label-title">Placa: </label>
+                              <span>{{
+                                item.serviceOrder?.plate != "" &&
+                                item.serviceOrder?.plate != null
+                                  ? item.serviceOrder?.plate : "--"}}</span>
+                            </div>
+                            <div class="col p-0 text-center" (click)="openModal(item, item.stage.name)">
+                              <button pButton type="button" label="Mais informações..." class="p-button-text p-button-success"  style="font-weight: 600;"></button>
+                            </div>
+                          </div>
+                        </p-card>
+                        <div class="col text-center" *ngIf="consultList == null || consultList.length  == 0 ">
+                            <div class="col">
+                              <i class="fa fa-car fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <span class="col" style="color: grey; font-size: medium;">
+                              Solicite uma OS para pesquisar...
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 md:col-3 field">
+                  <div class="card grid-os">
+                    <div class="p-title-card text-center">
+                      <h5>Tarefas em Andamento</h5>
+                    </div>
+                    <div class="col-12 p-0">
+                      <div class="grid">
+                        <p-card
+                          class="col-12 md:col-12"
+                          *ngFor="let item of taskInProgress">
+                          <div class="col text-center pt-0 mt-0">
+                            <p-header>
+                              {{ item.task.stage.name }}
+                            </p-header>
+                          </div>
+                          <div class="col text-center text-sm">
+                            <i class="fa fa-circle"
+                              aria-hidden="true"
+                              [style]="item.status.value != undefined  && item.status.value == 'EM_ANDAMENTO' ? 'color: green' 
+                              : item.status.value != undefined  && item.status.value == 'PAUSADO' ? 'color: #e0ac08' : item.status.value != undefined ? 'color: blue' : 'color: red' "></i>
+                            <span> {{ item.status.label }}</span>
+                          </div>
+                          <div class="col">
+                            <label class="p-label-title">Nº da OS: </label>
+                            <span>{{
+                              item.task.serviceOrder.number != "" &&
+                              item.task.serviceOrder.number != null
+                                ? item.task.serviceOrder.number : "--"}}</span>
+                          </div>
+                          <div class="col">
+                            <label class="p-label-title">Marca: </label>
+                            <span>{{
+                              item.task.serviceOrder.brand != "" &&
+                              item.task.serviceOrder.brand != null
+                                ? item.task.serviceOrder.brand : "--"}}</span>
+                          </div>
+                          <div class="col">
+                            <label class="p-label-title">Modelo: </label>
+                            <span>{{
+                              item.task.serviceOrder.model != "" &&
+                              item.task.serviceOrder.model != null
+                                ? item.task.serviceOrder.model : "--"}}</span>
+                          </div>
+                          <div class="col">
+                            <label class="p-label-title">Placa: </label>
+                            <span>{{
+                              item.task.serviceOrder.plate != "" &&
+                              item.task.serviceOrder.plate != null
+                                ? item.task.serviceOrder.plate : "--"}}</span>
+                          </div>
+                          <div class="col p-0 text-center" 
+                          (click)="openModal(item.task, item.task.name)">
+                            <button pButton type="button" label="Mais informações..." class="p-button-text p-button-success"  style="font-weight: 600;"></button>
+                          </div>
+                        </p-card>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

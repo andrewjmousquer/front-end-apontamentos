@@ -1,0 +1,32 @@
+<div v class="col-12 md:col-12">
+  <div>{{ header }}</div>
+
+  <form #form="ngForm" size="12"  [formGroup]="modelComment">
+    <div class="col-12 md:col-12 p-0">
+      <label for="float-input" class="formgroup-inline">Adicione um comentário</label>
+      <div class="col-12 md:col-12 field p-0">
+        <textarea name="comment" [rows]="5" [cols]="70" pInputTextarea autoResize="autoResize"
+          formControlName="comment" [required]="true" autocomplete="off" maxlength="1000"></textarea>
+      </div>
+    </div>
+    <div class="col-12 md:col-12 text-right">
+      <div class="absolute bottom-5 left-10">
+        <p-fileUpload mode="basic"
+        uploadIcon="pi pi-upload"
+        name="demo[]" 
+        accept="image/*" 
+        maxFileSize="100000000" 
+        [auto]="true"
+        [customUpload]="true" 
+        (uploadHandler)="onUpload($event)"></p-fileUpload>
+      </div>
+      
+      <button icon="" label="Cancelar" (click)="closeModal()"
+        class="p-button-outlined p-button-secondary md:w-2 sm:col-12" type="button" pButton>
+      </button>
+      <button icon="" label="enviar" class="ml-2 md:w-2 sm:col-12" type="submit" pButton
+      [disabled]="form.form.status != 'VALID'" (click)="sendComment()">
+      </button>
+    </div>
+  </form>
+</div>
